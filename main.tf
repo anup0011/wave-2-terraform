@@ -25,6 +25,6 @@ resource "google_compute_instance" "default" {
   metadata = {
    windows-startup-script-ps1 = "New-Item -Path C:\\Windows\\Temp\\hello-world.txt -ItemType File -Value 'Hello, World!'"
   }
- tags = ["windows']
+
   }
 
