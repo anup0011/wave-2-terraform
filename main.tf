@@ -1,3 +1,8 @@
+resource "google_service_account" "service_account" {
+  account_id   = "vm1-service-account"
+  display_name = "Service Account"
+}
+
 
 resource "google_compute_instance" "default" {
   name         = "virtual-machine1"
