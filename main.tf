@@ -8,7 +8,7 @@ resource "google_project_iam_binding" "default" {
   project = "db-cicdpipeline-wave-2"
   role = "roles/compute.instanceAdmin"
   members = [
-    "serviceAccount:service_account${google_service_account.default.email}"
+    "serviceAccount:${google_service_account.default.email}"
   ]
 }
   resource "google_compute_instance" "windows-vm" {
