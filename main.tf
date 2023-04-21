@@ -1,6 +1,6 @@
 resource "google_service_account" "terraform" {
   account_id = "terraform-sa"
-  display_name = "service account"
+  display_name = "service-account"
 }
 resource "google_service_account_key" "mykey" {
   service_account_id = google_service_account.terraform.name
@@ -14,8 +14,8 @@ resource "google_project_iam_binding" "sa_roles" {
   depends_on = [google_service_account.terraform]
 }
 resource "google_kms_key_ring" "my-key" {
-  name = var.ring_name
-  location = var.ring_location
+  name = "key-ring"
+  location = "asia-south2-a"
 }
 resource "google_kms_crypto_key" "my_crypto_key" {
   name            = "my-crypto-key"
