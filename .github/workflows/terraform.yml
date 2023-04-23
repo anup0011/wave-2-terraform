@@ -1,0 +1,35 @@
+name: Terraform
+env:
+  project_id: db-cicdpipeline-wave-2
+on:
+  push:
+    branches:
+      - main
+      - feature/*
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+      - name: Auth Google cloud
+        uses: google-github-actions/auth@v1
+        with:
+          token_format: 'access_token'
+          workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
+          service_account: ${{ secrets.SA }}
+      - name: Run terraform init
+        run: |
+          terraform init
+      - name: Run terraform plan
+        run: |
+          terraform plan 
+      - name: Run terraform apply
+        if: github.ref == 'refs/heads/main'
+        run: |
+          terraform apply -auto-approve

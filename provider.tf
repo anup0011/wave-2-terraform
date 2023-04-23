@@ -1,11 +1,12 @@
 terraform {
-  required_providers {
+   required_providers {
     google = {
-      source  = "hashicorp/google"
-      version = "4.61.0"
+      source = "hashicorp/google"
+      version = "4.62.1"
     }
   }
-}
-provider "google" {
-  project = var.project_id
+ backend "gcs" {
+   bucket  = "1010101-terraform-tfstate"
+   prefix  = "terraform/state"
+ }
 }
