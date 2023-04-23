@@ -13,9 +13,10 @@ resource "google_service_account" "vm_creator_sa" {
   display_name = "vm creator sa"
 }
 
-resource "google_service_account_iam_binding" "admin-account-iam" {
+resource "google_service_account_iam_binding" "comupte_key_iam" {
   service_account_id = google_service_account.vm_creator_sa.name
-  role               = "roles/compute.instanceAdmin"
+  for_each = ["roles/compute.instanceAdmin","rols/cloudkms.cryptoKeyDecrypter"]
+  role = each.value
 
   members = [
     "serviceaccount:${google_service_account.vm_creator_sa.email}",
