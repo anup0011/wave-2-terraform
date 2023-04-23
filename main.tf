@@ -24,8 +24,10 @@ resource "google_project_iam_binding" "default" {
     }
   }
   network_interface {
-    network = "custom"
+    network = "default"
     subnetwork = "wave2-vm"
+    access_config {
+      }
   }
 }
 
