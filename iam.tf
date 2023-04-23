@@ -13,13 +13,13 @@ resource "google_service_account" "vm_creator_sa" {
   display_name = "vm creator sa"
 }
 
-resource "google_service_account_iam_member" "vm_creator_keycrypto" {
-  for_each = toset([
-    roles/compute.instanceAdmin,
-    roles/cloudkms.cryptoKeyEncrypterDecrypter
-    ])
-  member = "serviceaccount:${google_service_account.vm_creator_sa.email}"
-  role = each.key
-  
+resource "google_service_account_iam_binding" "admin-account-iam" {
+  service_account_id = google_service_account.vm_creator_sa.name
+  role               = "roles/compute.instanceAdmin"
+
+  members = [
+    "serviceaccount:${google_service_account.vm_creator_sa.email}",
+  ]
 }
+
 
