@@ -18,7 +18,7 @@ resource "google_service_account_iam_member" "vm_creator_keycrypto" {
     roles/compute.instanceAdmin,
     roles/cloudkms.cryptoKeyEncrypterDecrypter
     ])
-  member = google_service_account.vm_creator_sa.id
+  member = "serviceaccount:${google_service_account.vm_creator_sa.email}"
   role = each.key
   
 }
