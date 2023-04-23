@@ -20,9 +20,6 @@ resource "google_compute_instance" "wav2-linux" {
     network = "custom"
     subnetwork = "wave2-as2"
 
-    access_config {
-      // Ephemeral public IP
-    }
   }
 
   service_account {
@@ -54,9 +51,6 @@ resource "google_compute_instance" "wav2-windows" {
     network = "custom"
     subnetwork = "wave2-as2"
 
-    access_config {
-      // Ephemeral public IP
-    }
   }
 
   service_account {
