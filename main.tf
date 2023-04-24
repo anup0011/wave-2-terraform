@@ -3,11 +3,6 @@ resource "google_service_account" "terraform" {
   display_name = "service-account"
 }
 
-resource "google_service_account_key" "mykey" {
-  service_account_id = google_service_account.terraform.name
-  public_key_type    = "TYPE_X509_PEM_FILE"
-}
-
 resource "google_project_iam_binding" "sa_roles" {
   role   = "roles/compute.instanceAdmin"
   members = [
