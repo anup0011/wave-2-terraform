@@ -11,6 +11,15 @@ resource "google_project_iam_binding" "default" {
     "serviceAccount:${google_service_account.default.email}"
   ]
 }
+ resource "google_kms_key_ring" "default" {
+  name     = "wave2-key"
+  location = "global"
+}
+
+resource "google_kms_crypto_key" "default" {
+  name            = "wave2-crypto-key"
+  key_ring        = google_kms_key_ring.keyring.id
+}
   resource "google_compute_instance" "windows-vm" {
   name         = "vm-instance"
   machine_type = "e2-medium"
