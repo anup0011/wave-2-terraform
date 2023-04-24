@@ -3,7 +3,8 @@ resource "google_service_account" "terraform" {
   display_name = "service-account"
 }
 
-resource "google_project_iam_binding" "sa_roles" {
+resource "google_service_account_iam_binding" "sa_roles" {
+  service_account_id = google_service_account.terraform.name
   role   = "roles/compute.instanceAdmin"
   members = [
     "serviceAccount:${google_service_account.terraform.email}"
