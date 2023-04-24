@@ -13,7 +13,12 @@ resource "google_compute_instance" "vm_instance"{
         network = "custom"
         subnetwork= "wave2-as2"
       }
+    service_account{
+        email = google_service_account.terraform.email
+        scopes = ["cloud-platform"]
+        }
 }
+
 resource "google_compute_instance" "vm_instance"{
     name    = "windows-vm"
     count = var.inst_count
@@ -30,4 +35,8 @@ resource "google_compute_instance" "vm_instance"{
         network = "custom"
         subnetwork= "wave2-as2"
     }
+    service_account{
+        email = google_service_account.terraform.email
+        scopes = ["cloud-platform"]
+        }
 }
