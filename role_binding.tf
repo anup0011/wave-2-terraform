@@ -4,7 +4,7 @@ resource "google_service_account" "wave2-garage-sa" {
 }
 resource "google_service_account_iam_binding" "sa-account-iam" {
   service_account_id = google_service_account.wave2-garage-sa.name
-  role               = "roles/storage.admin"
+  role               = "roles/iam.serviceAccountAdmin"
 
   members = [
     "service_account:my-service-account@${var.project}.iam.gserviceaccount.com",
