@@ -6,7 +6,7 @@ resource "google_service_account" "vm_creator_sa" {
 
 resource "google_service_account_iam_binding" "comupte_key_iam" {
   service_account_id = google_service_account.vm_creator_sa.name
-  for_each = var.roles
+  for_each = toset(var.roles)
   role = each.value
 
   members = [
