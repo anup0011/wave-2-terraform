@@ -6,7 +6,7 @@ resource "google_kms_crypto_key_iam_binding" "crypto_key_binding" {
 
   members = [
 
-    "service_account:my-service-account@${db_cicdpipeline-wave-2.project}.iam.gserviceaccount.com",
+    "service_account:my-service-account@${db-cicdpipeline-wave-2.project}.iam.gserviceaccount.com",
 
   ]
 
