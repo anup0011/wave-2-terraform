@@ -1,6 +1,6 @@
 resource "google_compute_instance" "windows_vm" {
   count = var.instance_count
-  name = var.instance_names[${count.index}]
+  name = var.instance_names[count.index]
   machine_type = "e2-medium"
   boot_disk {
     initialize_params{
