@@ -1,5 +1,5 @@
 resource "google_compute_instance" "wav2-linux" {
-  name         = "wave2-linux"
+  name         = "wave2-linux1"
   machine_type = var.machine_type
   zone         = "asia-south2-b"
 
