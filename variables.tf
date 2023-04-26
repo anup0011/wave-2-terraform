@@ -20,7 +20,7 @@ variable "region"{
 
 variable "roles"{
  type = list(string)
- default = ["roles/compute.instanceAdmin","rols/cloudkms.cryptoKeyDecrypter"]
+ default = ["roles/compute.instanceAdmin","roles/cloudkms.cryptoKeyEncrypterDecrypter"]
 }
 
 
