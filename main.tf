@@ -14,9 +14,9 @@ resource "google_compute_instance" "vm_linux" {
   }
 }
 
-resource "google_compute_instance" "vm_windows1" {
-  count        = var.vm_count 
-  name         = var.vm_names[count.index]
+resource "google_compute_instance" "vm_windows" {
+  count = var.vm_count
+  name = var.vm_names[count.index]
   machine_type = "e2-medium"
   zone         = "asia-south2-a"
   boot_disk {
