@@ -1,10 +1,9 @@
-variable "vm_count"
-{
-  default =2
-  }
+variable "vm_names"{
+ type = list(string)
+ default = ["windows-vm1","windows-vm2"]
+}
 
-variable "vm_names"
-{
-  type=list(string)
-  default =["windows_vm1","windows_vm2"]
-  }
+variable "vm_count"{
+ type = number
+ default = 2
+}
