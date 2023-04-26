@@ -17,3 +17,7 @@ variable "image_windows" {
 variable "vm_count" {
   default = 2
 }
+variable "roles"{
+ type = list(string)
+ default = ["roles/compute.instanceAdmin","roles/cloudkms.cryptoKeyEncrypterDecrypter"]
+}
