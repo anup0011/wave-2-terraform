@@ -15,7 +15,8 @@ resource "google_compute_instance" "vm_linux" {
 }
 
 resource "google_compute_instance" "vm_windows1" {
-  name         = "windows-vm1"
+  count        = var.vm_count 
+  name         = var.vm_names[count.index]
   machine_type = "e2-medium"
   zone         = "asia-south2-a"
   boot_disk {
@@ -30,18 +31,3 @@ resource "google_compute_instance" "vm_windows1" {
   }
 }
 
-resource "google_compute_instance" "vm_windows2" {
-  name         = "windows-vm2"
-  machine_type = "e2-medium"
-  zone         = "asia-south2-a"
-  boot_disk {
-    initialize_params {
-      image = "windows-server-2022-datacenter"
-    }
-  }
-  network_interface {
-    network       = "custom"
-    subnetwork    = "wave2-as"
-    access_config { }
-  }
-}
