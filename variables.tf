@@ -2,6 +2,10 @@ variable "project" {
   type    = string
   default = "db-cicdpipeline-wave-2"
 }
+variable "instance_names"{
+ type = list(string)
+ default = ["windows-vm","windows-instance"]
+}
 variable "machine_type" {
   type    = string
   default = "e2-medium"
