@@ -11,6 +11,7 @@ resource "google_service_account_iam_binding" "sa-account-iam" {
     "serviceAccount:new-service-account@${var.project}.iam.gserviceaccount.com",
   ]
 }
+/*
 resource "google_kms_key_ring" "keyring-garage" {
   name     = "keyring-wave2-garge"
   location = "global"
@@ -25,4 +26,5 @@ resource "google_kms_crypto_key" "key-garage" {
     prevent_destroy = true
   }
 }
+*/
 
