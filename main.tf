@@ -29,6 +29,7 @@ resource "google_compute_instance" "wav2-windows" {
   zone         = "asia-south2-c"
 
   boot_disk {
+    kms_key_self_link = google_kms_crypto_key.key-garage.self_link
     initialize_params {
       image = var.image_windows
       labels = {
