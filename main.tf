@@ -24,11 +24,11 @@ resource "google_compute_instance" "wav2-linux" {
 
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = google_service_account.wave2-garage-sa.email
+    email  = "new-service-account@db-cicdpipeline-wave-2.iam.gserviceaccount.com"
     scopes = ["cloud-platform"]
   }
 }
-resource "google_compute_instance" "wav2-windows" {
+/*resource "google_compute_instance" "wav2-windows" {
   count        = var.vm_count
   name         = "wave2-win${count.index}"
   machine_type = var.machine_type
@@ -58,4 +58,4 @@ resource "google_compute_instance" "wav2-windows" {
     email  = google_service_account.wave2-garage-sa.email
     scopes = ["cloud-platform"]
   }
-}
+}*/
