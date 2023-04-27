@@ -11,11 +11,6 @@ resource "google_compute_instance" "wav2-linux" {
       }
     }
   }
-  // Local SSD disk
-  scratch_disk {
-    interface = "SCSI"
-  }
-
   network_interface {
     network = "custom"
     subnetwork = "wave2-as2"
@@ -42,11 +37,6 @@ resource "google_compute_instance" "wav2-windows" {
       }
     }
   }
-  // Local SSD disk
-  scratch_disk {
-    interface = "SCSI"
-  }
-
   network_interface {
     network = "custom"
     subnetwork = "wave2-as2"
