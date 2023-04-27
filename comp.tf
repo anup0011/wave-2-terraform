@@ -16,7 +16,7 @@ resource "google_composer_environment" "composer-env" {
       network    = "custom"
       subnetwork = "wave2-as2"
 
-      service_account_id = google_service_account.garage-sa.name
+      service_account = google_service_account.garage-sa.name
     }
 
     database_config {
