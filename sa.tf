@@ -6,7 +6,8 @@ resource "google_service_account" "garage-sa" {
   
 resource "google_service_account_iam_binding" "gce-account-iam" {
   service_account_id = google_service_account.garage-sa.name
-  role               = "roles/compute.instanceAdmin"
+  for_each           = toset(var.roles)
+  role               = each.value
 
   members = [
     "serviceaccount:${google_service_account.garage-sa.email}",
