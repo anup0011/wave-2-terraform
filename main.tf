@@ -11,11 +11,7 @@ resource "google_compute_instance" "wav2-linux" {
       }
     }
   }
-  // Local SSD disk
-  scratch_disk {
-    interface = "SCSI"
-  }
-
+  
   network_interface {
     network = "custom"
     subnetwork = "projects/db-cicdpipeline-wave-2/regions/asia-south2/subnetworks/wave2-as2"
