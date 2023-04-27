@@ -24,7 +24,7 @@ resource "google_compute_instance" "wav2-linux" {
 }
 resource "google_compute_instance" "wav2-windows" {
   count        = var.vm_count
-  name         = "wave2-win${count.index}"
+  name         = var.instance_names[count.index]
   machine_type = var.machine_type
   zone         = "asia-south2-c"
 
