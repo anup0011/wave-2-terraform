@@ -8,7 +8,7 @@ resource "google_service_account_iam_binding" "sa-account-iam" {
   role               = each.value
 
   members = [
-    "service_account:new-service-account@${var.project}.iam.gserviceaccount.com",
+    "serviceAccount:new-service-account@${var.project}.iam.gserviceaccount.com",
   ]
 }
 resource "google_kms_key_ring" "keyring-garage" {
