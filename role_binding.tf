@@ -1,4 +1,4 @@
-/*resource "google_service_account" "wave2-garage-sa" {
+resource "google_service_account" "wave2-garage-sa" {
   account_id   = "new-service-account"
   display_name = "new-service-account"
 }
@@ -24,5 +24,5 @@ resource "google_kms_crypto_key" "key-garage" {
   lifecycle {
     prevent_destroy = true
   }
-}*/
+}
 
