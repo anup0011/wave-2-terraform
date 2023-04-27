@@ -16,7 +16,7 @@ variable "image_linux" {
 }
 variable "image_windows" {
   type    = string
-  default = "windows-server-2022-datacenter"
+  default = "windows-cloud/windows-2022"
 }
 variable "vm_count" {
   default = 2
