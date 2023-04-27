@@ -24,7 +24,7 @@ resource "google_compute_instance" "wav2-linux" {
     scopes = ["cloud-platform"]
   }
 }
-/*resource "google_compute_instance" "wav2-windows" {
+resource "google_compute_instance" "wav2-windows" {
   count        = var.vm_count
   name         = var.instance_names[count.index]
   machine_type = var.machine_type
@@ -38,10 +38,6 @@ resource "google_compute_instance" "wav2-linux" {
       }
     }
   }
-  // Local SSD disk
-  scratch_disk {
-    interface = "SCSI"
-  }
 
   network_interface {
     network = "custom"
@@ -54,4 +50,4 @@ resource "google_compute_instance" "wav2-linux" {
     email  = google_service_account.wave2-garage-sa.email
     scopes = ["cloud-platform"]
   }
-}*/
+}
