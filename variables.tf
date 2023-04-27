@@ -2,6 +2,10 @@ variable "project" {
   type    = string
   default = "db-cicdpipeline-wave-2"
 }
+variable "instance_names"{
+ type = list(string)
+ default = ["windows-vm","windows-instance"]
+}
 variable "machine_type" {
   type    = string
   default = "e2-medium"
@@ -16,4 +20,8 @@ variable "image_windows" {
 }
 variable "vm_count" {
   default = 2
+}
+variable "roles"{
+ type = list(string)
+ default = ["roles/compute.instanceAdmin","roles/cloudkms.cryptoKeyEncrypterDecrypter"]
 }
