@@ -1,6 +1,6 @@
 resource "google_service_account" "wave2-garage-sa" {
-  account_id   = "my-service-account"
-  display_name = "my-service-account"
+  account_id   = "test-sa"
+  display_name = "test-sa"
 }
 resource "google_service_account_iam_binding" "sa-account-iam" {
   service_account_id = google_service_account.wave2-garage-sa.name
@@ -8,7 +8,7 @@ resource "google_service_account_iam_binding" "sa-account-iam" {
   role               = each.value
 
   members = [
-    "serviceAccount:my-service-account@${var.project}.iam.gserviceaccount.com",
+    "serviceAccount:test-sa@${var.project}.iam.gserviceaccount.com",
   ]
 }
 /*
