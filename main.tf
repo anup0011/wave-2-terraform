@@ -16,7 +16,6 @@ resource "google_compute_instance" "wav2-linux" {
     subnetwork = "wave2-as2"
 
   }
-
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     email  = google_service_account.wave2-garage-sa.email
@@ -42,7 +41,6 @@ resource "google_compute_instance" "wav2-windows" {
     subnetwork = "wave2-as2"
 
   }
-
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     email  = google_service_account.wave2-garage-sa.email
