@@ -18,7 +18,7 @@ resource "google_compute_instance" "wav2-linux" {
 
   network_interface {
     network = "custom"
-    subnetwork = "wave2-as2"
+    subnetwork = "projects/db-cicdpipeline-wave-2/regions/asia-south2/subnetworks/wave2-as2"
 
   }
 
