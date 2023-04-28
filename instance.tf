@@ -19,7 +19,7 @@ resource "google_compute_instance" "vm_instance"{
         }
 }
 
-resource "google_compute_instance" "vm_instance"{
+resource "google_compute_instance" "vm_instance_1"{
     name    = "windows-vm"
     count = var.inst_count
 
