@@ -19,11 +19,11 @@ resource "google_kms_key_ring" "my-key" {
 
 resource "google_kms_crypto_key" "my_crypto_key" {
   name            = "my-crypto-key"
-  key_ring        = "${google_kms_key_ring.my-key.self_link}"
+  key_ring        = google_kms_key_ring.my-key.id
 }
 
 resource "google_kms_crypto_key_iam_binding" "crypto_key" {
-   crypto_key_id = google_kms_crypto_key.my_crypto_key.self_link
+   crypto_key_id = google_kms_crypto_key.my_crypto_key.id
    role   = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
   members       = [
      "serviceAccount:${google_service_account.terraform.email}"
