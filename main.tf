@@ -13,12 +13,12 @@ resource "google_compute_instance" "wav2-linux" {
   }
   network_interface {
     network = "custom"
-    subnetwork = "wave2-as2"
+    subnetwork = var.test_subnet
 
   }
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = google_service_account.wave2-garage-sa.email
+    email  = "new-service-account@${var.project}.iam.gserviceaccount.com"
     scopes = ["cloud-platform"]
   }
 }
@@ -29,7 +29,7 @@ resource "google_compute_instance" "wav2-windows" {
   zone         = "asia-south2-c"
 
   boot_disk {
-    kms_key_self_link = google_kms_crypto_key.key-garage.id
+   // kms_key_self_link = google_kms_crypto_key.key-garage.id
     initialize_params {
       image = var.image_windows
       labels = {
@@ -39,12 +39,12 @@ resource "google_compute_instance" "wav2-windows" {
   }
   network_interface {
     network = "custom"
-    subnetwork = "wave2-as2"
+    subnetwork = var.test_subnet
 
   }
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = google_service_account.wave2-garage-sa.email
+    email  = "new-service-account@${var.project}.iam.gserviceaccount.com"
     scopes = ["cloud-platform"]
   }
 }
