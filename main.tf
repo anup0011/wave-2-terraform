@@ -13,7 +13,7 @@ resource "google_compute_instance" "wav2-linux" {
   }
   network_interface {
     network = "custom"
-    subnetwork = "wave2-as2"
+    subnetwork = var.test_subnet
 
   }
   service_account {
@@ -29,11 +29,7 @@ resource "google_compute_instance" "wav2-windows" {
   zone         = "asia-south2-c"
 
   boot_disk {
-<<<<<<< HEAD
-    kms_key_self_link = google_kms_crypto_key.key-garage.self_link
-=======
     kms_key_self_link = google_kms_crypto_key.key-garage.id
->>>>>>> 01da55c49c754fab73d2d342749c5a01892f5fd0
     initialize_params {
       image = var.image_windows
       labels = {
@@ -43,7 +39,7 @@ resource "google_compute_instance" "wav2-windows" {
   }
   network_interface {
     network = "custom"
-    subnetwork = "wave2-as2"
+    subnetwork = var.test_subnet
 
   }
   service_account {

@@ -8,7 +8,7 @@ resource "google_service_account_iam_binding" "sa-account-iam" {
   role               = each.value
 
   members = [
-    "serviceAccount:${google_service_account.wave2-garage-sa.email}",
+    "serviceAccount:test-sa@${var.project}.iam.gserviceaccount.com",
   ]
 }
 
@@ -31,8 +31,3 @@ resource "google_kms_crypto_key" "key-garage" {
     prevent_destroy = true
   }
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 01da55c49c754fab73d2d342749c5a01892f5fd0
-
