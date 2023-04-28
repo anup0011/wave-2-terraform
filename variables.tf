@@ -36,5 +36,5 @@ variable "roles"{
  ]
 }
 variable "test_subnet" {
-  default = "project/db-cicdpipeline-wave-2/region/asia-south2/wave2-as2"
+  default = "project/db-cicdpipeline-wave-2/region/asia-south2/wave2-as1"
 }

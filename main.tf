@@ -18,7 +18,7 @@ resource "google_compute_instance" "wav2-linux" {
   }
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = "test-sa@${var.project}.iam.gserviceaccount.com"
+    email  = "new-service-account@${var.project}.iam.gserviceaccount.com"
     scopes = ["cloud-platform"]
   }
 }
@@ -29,7 +29,7 @@ resource "google_compute_instance" "wav2-windows" {
   zone         = "asia-south2-c"
 
   boot_disk {
-    kms_key_self_link = google_kms_crypto_key.key-garage.id
+   // kms_key_self_link = google_kms_crypto_key.key-garage.id
     initialize_params {
       image = var.image_windows
       labels = {
@@ -44,7 +44,7 @@ resource "google_compute_instance" "wav2-windows" {
   }
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = "test-sa@${var.project}.iam.gserviceaccount.com"
+    email  = "new-service-account@${var.project}.iam.gserviceaccount.com"
     scopes = ["cloud-platform"]
   }
 }
