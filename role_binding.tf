@@ -15,7 +15,7 @@
   ]
 }*/
 
-resource "google_compute_instance_iam_binding" "instance_binding_win" {
+/*resource "google_compute_instance_iam_binding" "instance_binding_win" {
   depends_on = [ google_compute_instance.wav2-windows ]
   project = var.project
   zone = "asia-south2-c"
@@ -26,7 +26,7 @@ resource "google_compute_instance_iam_binding" "instance_binding_win" {
     "user:koshike.sushmitha@tcs.com",
     "user:kushal.malla@tcs.com"
   ]
-}
+}*/
 
 data "google_service_account" "new_service_account" {
   account_id = "new-service-account"
@@ -39,7 +39,8 @@ resource "google_service_account_iam_binding" "sa_user_iam" {
 
   members = [
     "user:koshike.sushmitha@tcs.com",
-    "user:kushal.malla@tcs.com"
+    "user:kushal.malla@tcs.com",
+    "user:neeraja.balireddy@tcs.com"
   ]
 }
 
