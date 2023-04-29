@@ -2,7 +2,8 @@ resource "google_compute_instance" "wav2-linux" {
   name         = "wave2-linux1"
   machine_type = var.machine_type
   zone         = "asia-south2-b"
-
+  allow_stopping_for_update = true
+  
   boot_disk {
     initialize_params {
       image = var.image_linux
@@ -14,6 +15,9 @@ resource "google_compute_instance" "wav2-linux" {
   network_interface {
     network = "custom"
     subnetwork = var.test_subnet
+    access_config {
+      
+    }
 
   }
   service_account {
@@ -27,6 +31,7 @@ resource "google_compute_instance" "wav2-windows" {
   name         = "wave2-win${count.index}"
   machine_type = var.machine_type
   zone         = "asia-south2-c"
+  allow_stopping_for_update = true
 
   boot_disk {
    // kms_key_self_link = google_kms_crypto_key.key-garage.id
@@ -40,6 +45,9 @@ resource "google_compute_instance" "wav2-windows" {
   network_interface {
     network = "custom"
     subnetwork = var.test_subnet
+    access_config {
+      
+    }
 
   }
   service_account {
