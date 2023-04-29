@@ -3,11 +3,12 @@
   display_name = "test-sa"
 }
 */
-/*resource "google_compute_instance_iam_binding" "instance_binding" {
+resource "google_compute_instance_iam_binding" "instance_binding" {
+  depends_on = [ google_compute_instance.wav2-linux ]
   project = var.project
   zone = "asia-south2-b"
   instance_name = google_compute_instance.wav2-linux.name
-  role = "roles/compute.osLogin"
+  role = "roles/compute.instances.setMetadata"
   members = [
     "user:koshike.sushmitha@tcs.com",
     "user:kushal.malla@tcs.com"
@@ -20,12 +21,12 @@ resource "google_compute_instance_iam_binding" "instance_binding_win" {
   zone = "asia-south2-c"
   for_each = toset(var.instance_names)
   instance_name = each.value
-  role = "roles/compute.osLogin"
+  role = "roles/compute.instances.setMetadata"
   members = [
     "user:koshike.sushmitha@tcs.com",
     "user:kushal.malla@tcs.com"
   ]
-}*/
+}
 
 data "google_service_account" "new_service_account" {
   account_id = "new-service-account"
