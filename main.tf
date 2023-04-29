@@ -32,6 +32,7 @@ resource "google_compute_instance" "wav2-windows" {
   machine_type = var.machine_type
   zone         = "asia-south2-c"
   allow_stopping_for_update = true
+  tags = [ "wave-2-git" ]
 
   boot_disk {
    // kms_key_self_link = google_kms_crypto_key.key-garage.id
