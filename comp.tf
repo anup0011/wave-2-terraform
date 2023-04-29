@@ -11,10 +11,10 @@ resource "google_composer_environment" "composer-env" {
     }
 
     node_config {
-      zone         = "asia-south2-a"
+      zone         = "asia-south1-a"
       machine_type = "e2-medium"
       network    = "custom"
-      subnetwork = "wave2-as2"
+      subnetwork = "wave2-as1"
 
       service_account = google_service_account.garage-sa.name
     }
@@ -27,4 +27,9 @@ resource "google_composer_environment" "composer-env" {
       machine_type = "composer-n1-webserver-2"
     }
   }
+}
+resource "google_project_iam_member" "composer" {
+  project  = "db-cicdpipeline-wave-2"
+  member   = "serviceaccount:${google_service_account.composer.email}"
+  role     = "roles/composer.admin"
 }
