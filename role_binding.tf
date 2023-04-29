@@ -7,7 +7,8 @@ resource "google_compute_instance_iam_binding" "instance_binding" {
   project = var.project
   zone = "asia-south2-b"
   instance_name = google_compute_instance.wav2-linux.name
-  role = "roles/compute.instanceAdmin"
+  for_each = toset(var.roles)
+  role = each.value
   members = [
     "user:koshike.sushmitha@tcs.com",
   ]
