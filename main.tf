@@ -7,7 +7,7 @@ resource "google_compute_firewall" "ssh_rule" {
   source_ranges = [ "0.0.0.0/0" ]
 
   allow {
-    protocol  = "ssh"
+    protocol  = "tcp"
     ports     = ["22"]
   }
 
