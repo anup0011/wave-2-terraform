@@ -10,7 +10,7 @@ resource "google_composer_environment" "composer_environment" {
   region = "asia-south1"
   config {
     software_config {
-      image_version = "composer-2.1.14-airflow-2.5.1"
+      image_version = "composer-1.20.0-airflow-1.10.15"
     }
 
     node_config {
