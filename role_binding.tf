@@ -11,12 +11,13 @@ resource "google_service_account_iam_binding" "sa-account-iam" {
     "serviceAccount:test-sa@${var.project}.iam.gserviceaccount.com",
   ]
 }
+*/
 
 resource "google_project_service" "cloudkms_service" {
   project = var.project
   service = "cloudkms.googleapis.com"
 }
-
+/*
 resource "google_kms_key_ring" "keyring-garage" {
   name     = "keyring-wave2-garge"
   location = "global"
