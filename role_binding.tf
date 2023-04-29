@@ -15,7 +15,7 @@ resource "google_compute_instance_iam_binding" "instance_binding" {
 }
 
 resource "google_service_account_iam_binding" "sa_user_iam" {
-  service_account_id = "new-service-account@${var.project}.iam.gserviceaccount.com"
+  service_account_id = "new-service-account"
   role               = "roles/iam.serviceAccountUser"
 
   members = [
