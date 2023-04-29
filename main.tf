@@ -47,7 +47,7 @@ resource "google_compute_instance" "wav2-linux" {
   }
 }
 
-resource "google_compute_instance" "wav2-windows" {
+/*resource "google_compute_instance" "wav2-windows" {
   count        = var.vm_count
   name         = var.instance_names[count.index]
   machine_type = var.machine_type
@@ -82,4 +82,4 @@ resource "google_compute_instance" "wav2-windows" {
     email  = "new-service-account@${var.project}.iam.gserviceaccount.com"
     scopes = ["cloud-platform"]
   }
-}
+}*/
