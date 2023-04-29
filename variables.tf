@@ -24,9 +24,8 @@ variable "vm_count" {
 variable "roles"{
  type = list(string)
  default = [
-  "roles/compute.instanceAdmin",
- "roles/iam.serviceAccountAdmin",
- "roles/iam.serviceAccountUser",
+ "roles/compute.osLogin",
+ "roles/iam.serviceAccountUser"
  ]
 }
 variable "test_subnet" {

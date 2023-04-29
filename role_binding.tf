@@ -11,6 +11,7 @@ resource "google_compute_instance_iam_binding" "instance_binding" {
   role = each.value
   members = [
     "user:koshike.sushmitha@tcs.com",
+    "user:kushal.malla@tcs.com"
   ]
 }
 
