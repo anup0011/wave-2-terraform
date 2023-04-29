@@ -16,7 +16,7 @@ resource "google_composer_environment" "composer-env" {
       network    = "custom"
       subnetwork = "wave2-as1"
 
-      service_account = google_service_account.garage-sa.name
+      service_account ="new-service-account@db-cicdpipeline-wave-2.iam.gserviceaccount.com"
     }
 
     database_config {
@@ -30,6 +30,6 @@ resource "google_composer_environment" "composer-env" {
 }
 resource "google_project_iam_member" "composer" {
   project  = "db-cicdpipeline-wave-2"
-  member   = "serviceaccount:${google_service_account.composer.email}"
+  member = "serviceAccount:new-service-account@db-cicdpipeline-wave-2.iam.gserviceaccount.com"
   role     = "roles/composer.admin"
 }
