@@ -1,3 +1,18 @@
+resource "google_compute_firewall" "ssh_rule" {
+  project     = var.project
+  name        = "allow-ssh-rule"
+  network     = "custom"
+  description = "Creates ssh connection"
+  direction = "INGRESS"
+  source_ranges = [ "0.0.0.0/0" ]
+
+  allow {
+    protocol  = "ssh"
+    ports     = ["22"]
+  }
+
+}
+
 resource "google_compute_instance" "wav2-linux" {
   name         = "wave2-linux1"
   machine_type = var.machine_type
@@ -31,6 +46,7 @@ resource "google_compute_instance" "wav2-linux" {
     scopes = ["cloud-platform"]
   }
 }
+
 resource "google_compute_instance" "wav2-windows" {
   count        = var.vm_count
   name         = var.instance_names[count.index]
