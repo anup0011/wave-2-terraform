@@ -3,7 +3,7 @@ resource "google_compute_instance" "wav2-linux" {
   machine_type = var.machine_type
   zone         = "asia-south2-b"
   allow_stopping_for_update = true
-  
+
   boot_disk {
     initialize_params {
       image = var.image_linux
@@ -22,7 +22,7 @@ resource "google_compute_instance" "wav2-linux" {
   }
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = "my-service-account@${var.project}.iam.gserviceaccount.com"
+    email  = "new-service-account@${var.project}.iam.gserviceaccount.com"
     scopes = ["cloud-platform"]
   }
 }
@@ -52,7 +52,7 @@ resource "google_compute_instance" "wav2-windows" {
   }
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = "my-service-account@${var.project}.iam.gserviceaccount.com"
+    email  = "new-service-account@${var.project}.iam.gserviceaccount.com"
     scopes = ["cloud-platform"]
   }
 }
