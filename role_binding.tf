@@ -7,7 +7,7 @@ resource "google_compute_instance_iam_binding" "instance_binding" {
   project = var.project
   zone = "asia-south2-b"
   instance_name = google_compute_instance.wav2-linux.name
-  role = "roles/compute.osLogin"
+  role = "roles/compute.instanceAdmin"
   members = [
     "user:koshike.sushmith@tcs.com",
   ]
