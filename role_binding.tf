@@ -14,9 +14,9 @@ resource "google_compute_instance_iam_binding" "instance_binding" {
   ]
 }
 
-resource "google_compute_instance_iam_binding" "instance_binding" {
+resource "google_compute_instance_iam_binding" "instance_binding_win" {
   project = var.project
-  zone = "asia-south2-b"
+  zone = "asia-south2-c"
   instance_name = google_compute_instance.wav2-windows.name
   role = "roles/compute.osLogin"
   members = [
