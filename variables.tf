@@ -25,14 +25,8 @@ variable "roles"{
  type = list(string)
  default = [
   "roles/compute.instanceAdmin",
- "roles/cloudkms.admin",
- "roles/bigquery.admin",
- "roles/resourcemanager.projectIamAdmin",
  "roles/iam.serviceAccountAdmin",
- "roles/storage.admin",
- "roles/iam.workloadIdentityUser",
  "roles/iam.serviceAccountUser",
- "roles/composer.admin",
  ]
 }
 variable "test_subnet" {
