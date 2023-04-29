@@ -2,16 +2,17 @@
   account_id   = "test-sa"
   display_name = "test-sa"
 }
-resource "google_service_account_iam_binding" "sa-account-iam" {
-  service_account_id = google_service_account.wave2-garage-sa.name
-  for_each           = toset(var.roles)
-  role               = each.value
-
+*/
+resource "google_compute_instance_iam_binding" "instance_binding" {
+  project = var.project
+  zone = "asia-south2-b"
+  instance_name = google_compute_instance.wav2-linux.name
+  role = "roles/compute.instanceAdmin"
   members = [
-    "serviceAccount:test-sa@${var.project}.iam.gserviceaccount.com",
+    "user:koshike.sushmith@tcs.com",
   ]
 }
-*/
+
 
 resource "google_project_service" "cloudkms_service" {
   project = var.project
