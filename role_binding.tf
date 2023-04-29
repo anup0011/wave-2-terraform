@@ -31,6 +31,7 @@ data "google_service_account" "new_service_account" {
 }
 
 resource "google_service_account_iam_binding" "sa_user_iam" {
+  depends_on = [ data.google_service_account.new_service_account ]
   service_account_id = data.google_service_account.new_service_account.name
   role               = "roles/iam.serviceAccountUser"
 
