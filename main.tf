@@ -20,6 +20,11 @@ resource "google_compute_instance" "wav2-linux" {
     }
 
   }
+
+  metadata = {
+    enable-oslogin = "TRUE"
+  }
+
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     email  = "new-service-account@${var.project}.iam.gserviceaccount.com"
@@ -51,6 +56,11 @@ resource "google_compute_instance" "wav2-windows" {
     }
 
   }
+
+   metadata = {
+    enable-oslogin = "TRUE"
+  }
+
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     email  = "new-service-account@${var.project}.iam.gserviceaccount.com"
