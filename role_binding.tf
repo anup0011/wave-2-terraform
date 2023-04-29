@@ -14,11 +14,24 @@ resource "google_compute_instance_iam_binding" "instance_binding" {
   ]
 }
 
+resource "google_compute_instance_iam_binding" "instance_binding_win" {
+  project = var.project
+  zone = "asia-south2-c"
+  for_each = toset(var.instance_names)
+  instance_name = each.value
+  role = "roles/compute.osLogin"
+  members = [
+    "user:koshike.sushmitha@tcs.com",
+    "user:kushal.malla@tcs.com"
+  ]
+}
+
 data "google_service_account" "new_service_account" {
   account_id = "new-service-account"
 }
 
 resource "google_service_account_iam_binding" "sa_user_iam" {
+  depends_on = [ data.google_service_account.new_service_account ]
   service_account_id = data.google_service_account.new_service_account.name
   role               = "roles/iam.serviceAccountUser"
 
