@@ -14,6 +14,17 @@ resource "google_compute_instance_iam_binding" "instance_binding" {
   ]
 }
 
+resource "google_compute_instance_iam_binding" "instance_binding" {
+  project = var.project
+  zone = "asia-south2-b"
+  instance_name = google_compute_instance.wav2-windows.name
+  role = "roles/compute.osLogin"
+  members = [
+    "user:koshike.sushmitha@tcs.com",
+    "user:kushal.malla@tcs.com"
+  ]
+}
+
 data "google_service_account" "new_service_account" {
   account_id = "new-service-account"
 }
