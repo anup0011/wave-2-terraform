@@ -17,7 +17,8 @@ resource "google_compute_instance_iam_binding" "instance_binding" {
 resource "google_compute_instance_iam_binding" "instance_binding_win" {
   project = var.project
   zone = "asia-south2-c"
-  instance_name = google_compute_instance.wav2-windows[count.index]
+  for_each = toset(google_compute_instance.wav2-windows.name)
+  instance_name = each.value
   role = "roles/compute.osLogin"
   members = [
     "user:koshike.sushmitha@tcs.com",
