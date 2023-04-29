@@ -15,18 +15,18 @@
   ]
 }*/
 
-/*resource "google_compute_instance_iam_binding" "instance_binding_win" {
+resource "google_compute_instance_iam_binding" "instance_binding_win" {
   depends_on = [ google_compute_instance.wav2-windows ]
   project = var.project
   zone = "asia-south2-c"
   for_each = toset(var.instance_names)
   instance_name = each.value
-  role = "roles/compute.osLogin"
+  role = "roles/compute.instanceAdmin"
   members = [
     "user:koshike.sushmitha@tcs.com",
     "user:kushal.malla@tcs.com"
   ]
-}*/
+}
 
 data "google_service_account" "new_service_account" {
   account_id = "new-service-account"
