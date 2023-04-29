@@ -7,6 +7,7 @@ resource "google_project_service" "composer_api" {
 resource "google_composer_environment" "composer_environment" {
   provider = google
   name = "composer-environment"
+  region = "asia-south1"
   config {
     software_config {
       image_version = "composer-2.1.14-airflow-2.5.1"
