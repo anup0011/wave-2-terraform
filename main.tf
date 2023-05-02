@@ -22,7 +22,7 @@ resource "google_compute_instance" "wave2-linux" {
   tags = [ "wave-2-git" ]
 
   boot_disk {
-    kms_key_self_link = google_kms_crypto_key.key-garage.id
+    kms_key_self_link = data.google_kms_crypto_key.key-garage.self_link
     initialize_params {
       image = var.image_linux
       labels = {
@@ -36,7 +36,6 @@ resource "google_compute_instance" "wave2-linux" {
     access_config {
       
     }
-
   }
 
   metadata = {
@@ -60,7 +59,7 @@ resource "google_compute_instance" "wave2-windows" {
   depends_on = [ google_project_iam_member.keycrypto_role ]
 
   boot_disk {
-    kms_key_self_link = google_kms_crypto_key.key-garage.id
+    kms_key_self_link = data.google_kms_crypto_key.key-garage.self_link
     initialize_params {
       image = var.image_windows
       labels = {
@@ -75,7 +74,6 @@ resource "google_compute_instance" "wave2-windows" {
     access_config {
       
     }
-
   }
 
   service_account {
