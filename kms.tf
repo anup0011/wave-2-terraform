@@ -16,10 +16,11 @@ resource "google_kms_crypto_key" "key-crypto" {
   }
   
 }
-data "google_storage_project_service_account" "gcs_account" {
-}
 resource "google_kms_crypto_key_iam_binding" "crypto_key" {
   crypto_key_id = google_kms_crypto_key.key-crypto.id
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-  members = ["serviceAccount:${data.google_kms_crypto_key_iam_binding.crypto_key.email_address}"]
+ members       = [
+     "serviceAccount:new-service-account@db-cicdpipeline-wave-2.iam.gserviceaccount.com",
+
+  ]
 }
