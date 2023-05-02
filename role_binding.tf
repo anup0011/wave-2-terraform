@@ -39,21 +39,27 @@ resource "google_project_service" "cloudkms_service" {
   project = var.project
   service = "cloudkms.googleapis.com"
 }
-
+/*
 resource "google_kms_key_ring" "keyring-garage" {
+  name     = "keyring-wave2-garge"
+  location = "global"
+}
+*/
+data "google_kms_key_ring" "keyring-garage" {
   name     = "keyring-wave2-garge"
   location = "global"
 }
 
 resource "google_kms_crypto_key" "key-garage" {
   name            = "key-wave2-garage"
-  key_ring        = google_kms_key_ring.keyring-garage.id
+  key_ring        = data.google_kms_key_ring.keyring-garage.id
   rotation_period = "100000s"
 
   lifecycle {
     prevent_destroy = true
   }
 }
+
 resource "google_kms_crypto_key_version" "example-key" {
   crypto_key = google_kms_crypto_key.key-garage.id
 }
@@ -65,3 +71,11 @@ resource "google_kms_key_ring_iam_binding" "key_ring" {
   members = var.iam_members
 }
 */
+resource "google_kms_crypto_key_iam_binding" "crypto_key" {
+  crypto_key_id = google_kms_crypto_key.key-garage.id
+  role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+
+  members = [
+    "serviceAccount:my-service-account${var.project}.iam.gserviceaccount.com"
+  ]
+}
