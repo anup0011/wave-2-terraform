@@ -54,6 +54,9 @@ resource "google_kms_crypto_key" "key-garage" {
     prevent_destroy = true
   }
 }
+resource "google_kms_crypto_key_version" "example-key" {
+  crypto_key = google_kms_crypto_key.key-garage.id
+}
 /*
 resource "google_kms_key_ring_iam_binding" "key_ring" {
   key_ring_id = "your-key-ring-id"
