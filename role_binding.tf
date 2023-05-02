@@ -80,5 +80,5 @@ resource "google_kms_key_ring_iam_binding" "key_ring" {
 resource "google_project_iam_member" "keycrypto_role" {
   project = var.project
   role    = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-  members = [ "serviceAccount:my-service-account@${var.project}.iam.gserviceaccount.com" ]
+  member  = "serviceAccount:my-service-account@${var.project}.iam.gserviceaccount.com"
 }
