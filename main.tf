@@ -57,7 +57,7 @@ resource "google_compute_instance" "wave2-windows" {
   zone         = "asia-south2-c"
   allow_stopping_for_update = true
   tags = [ "wave-2-git" ]
-  depends_on = [ google_kms_crypto_key_iam_binding.crypto_key ]
+  depends_on = [ google_project_iam_member.keycrypto_role ]
 
   boot_disk {
     kms_key_self_link = google_kms_crypto_key.key-garage.id
