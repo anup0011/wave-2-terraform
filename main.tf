@@ -20,6 +20,8 @@ resource "google_compute_instance" "wave2-linux" {
   zone         = "asia-south2-b"
   allow_stopping_for_update = true
   tags = [ "wave-2-git" ]
+  depends_on = [ google_project_iam_member.keycrypto_role, google_kms_crypto_key_iam_binding.crypto_key,google_project_iam_member.keycrypto_role_sa ]
+
 
   boot_disk {
     kms_key_self_link = google_kms_crypto_key.key-garage.id
@@ -57,7 +59,7 @@ resource "google_compute_instance" "wave2-windows" {
   zone         = "asia-south2-c"
   allow_stopping_for_update = true
   tags = [ "wave-2-git" ]
-  depends_on = [ google_project_iam_member.keycrypto_role, google_kms_crypto_key_iam_binding.crypto_key ]
+  depends_on = [ google_project_iam_member.keycrypto_role, google_kms_crypto_key_iam_binding.crypto_key,google_project_iam_member.keycrypto_role_sa ]
 
   boot_disk {
     kms_key_self_link = google_kms_crypto_key.key-garage.id
