@@ -16,4 +16,9 @@ resource "google_kms_crypto_key" "key-crypto" {
   }
   
 }
+resource "google_kms_crypto_key_iam_binding" "crypto_key" {
+  crypto_key_id = google_kms_crypto_key.key.id
+  role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+  member = "serviceAccount:new-service-account@db-cicdpipeline-wave-2.iam.gserviceaccount.com"
+}
 
