@@ -5,6 +5,7 @@ resource "google_compute_firewall" "ssh_rule" {
   description = "Creates ssh connection"
   direction = "INGRESS"
   source_ranges = [ "0.0.0.0/0" ]
+  target_tags = ["wave-2-git"]
 
   allow {
     protocol  = "tcp"
@@ -13,11 +14,12 @@ resource "google_compute_firewall" "ssh_rule" {
 
 }
 
-resource "google_compute_instance" "wav2-linux" {
+resource "google_compute_instance" "wave2-linux" {
   name         = "wave2-linux1"
   machine_type = var.machine_type
   zone         = "asia-south2-b"
   allow_stopping_for_update = true
+  tags = [ "wave-2-git" ]
 
   boot_disk {
     initialize_params {
@@ -47,9 +49,9 @@ resource "google_compute_instance" "wav2-linux" {
   }
 }
 
-resource "google_compute_instance" "wav2-windows" {
+resource "google_compute_instance" "wave2-windows" {
   count        = var.vm_count
-  name         = var.instance_names[count.index]
+  name         = "wave2-win${count.index}"
   machine_type = var.machine_type
   zone         = "asia-south2-c"
   allow_stopping_for_update = true
@@ -64,6 +66,7 @@ resource "google_compute_instance" "wav2-windows" {
       }
     }
   }
+
   network_interface {
     network = "custom"
     subnetwork = var.test_subnet
@@ -71,10 +74,6 @@ resource "google_compute_instance" "wav2-windows" {
       
     }
 
-  }
-
-   metadata = {
-    enable-oslogin = "TRUE"
   }
 
   service_account {

@@ -9,49 +9,17 @@ resource "google_compute_instance_iam_binding" "instance_binding" {
   zone = "asia-south2-b"
   instance_name = google_compute_instance.wav2-linux.name
   role = "roles/compute.instanceAdmin"
-  members = [
-    "user:koshike.sushmitha@tcs.com",
-    "user:kushal.malla@tcs.com",
-    "user:neeraja.balireddy@tcs.com",
-    "user:ajaykumar.shah@tcs.com",
-    "user:apanya.chauhan1@tcs.com",
-    "user:keerthivashan.kc@tcs.com",
-    "user:manushri.m@tcs.com",
-    "user:meetu.singh@tcs.com",
-    "user:nisha.shashi@tcs.com",
-    "user:pavan.gowda@tcs.com",
-    "user:prabin.mohanty@tcs.com",
-    "user:sahithi.narla@tcs.com",
-    "user:sitaramachakravarthy.peruvel@tcs.com",
-    "user:srisahithi.banda@tcs.com",
-    "user:suhasini.dussa@tcs.com"
-  ]
+  members = var.iam_members
 }
 
 resource "google_compute_instance_iam_binding" "instance_binding_win" {
   depends_on = [ google_compute_instance.wav2-windows ]
   project = var.project
   zone = "asia-south2-c"
-  for_each = toset(var.instance_names)
-  instance_name = each.value
+  count = var.vm_count
+  instance_name = "wave2-win${count.index}"
   role = "roles/compute.instanceAdmin"
-  members = [
-    "user:koshike.sushmitha@tcs.com",
-    "user:kushal.malla@tcs.com",
-    "user:neeraja.balireddy@tcs.com",
-    "user:ajaykumar.shah@tcs.com",
-    "user:apanya.chauhan1@tcs.com",
-    "user:keerthivashan.kc@tcs.com",
-    "user:manushri.m@tcs.com",
-    "user:meetu.singh@tcs.com",
-    "user:nisha.shashi@tcs.com",
-    "user:pavan.gowda@tcs.com",
-    "user:prabin.mohanty@tcs.com",
-    "user:sahithi.narla@tcs.com",
-    "user:sitaramachakravarthy.peruvel@tcs.com",
-    "user:srisahithi.banda@tcs.com",
-    "user:suhasini.dussa@tcs.com"
-  ]
+  members = var.iam_members
 }
 
 data "google_service_account" "new_service_account" {
@@ -63,23 +31,7 @@ resource "google_service_account_iam_binding" "sa_user_iam" {
   service_account_id = data.google_service_account.new_service_account.name
   role               = "roles/iam.serviceAccountUser"
 
-  members = [
-    "user:koshike.sushmitha@tcs.com",
-    "user:kushal.malla@tcs.com",
-    "user:neeraja.balireddy@tcs.com",
-    "user:ajaykumar.shah@tcs.com",
-    "user:apanya.chauhan1@tcs.com",
-    "user:keerthivashan.kc@tcs.com",
-    "user:manushri.m@tcs.com",
-    "user:meetu.singh@tcs.com",
-    "user:nisha.shashi@tcs.com",
-    "user:pavan.gowda@tcs.com",
-    "user:prabin.mohanty@tcs.com",
-    "user:sahithi.narla@tcs.com",
-    "user:sitaramachakravarthy.peruvel@tcs.com",
-    "user:srisahithi.banda@tcs.com",
-    "user:suhasini.dussa@tcs.com"
-  ]
+  members = var.iam_members
 }
 
 
