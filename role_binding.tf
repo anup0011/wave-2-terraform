@@ -23,7 +23,7 @@ resource "google_compute_instance_iam_binding" "instance_binding_win" {
 }
 
 data "google_service_account" "new_service_account" {
-  account_id = "new-service-account"
+  account_id = "my-service-account"
 }
 
 resource "google_service_account_iam_binding" "sa_user_iam" {
