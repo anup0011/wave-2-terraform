@@ -51,7 +51,7 @@ data "google_kms_key_ring" "keyring-garage" {
 }
 
 resource "google_kms_crypto_key" "key-garage" {
-  name            = "key-wave2-garage"
+  name            = "key-test"
   key_ring        = data.google_kms_key_ring.keyring-garage.id
   rotation_period = "100000s"
 
