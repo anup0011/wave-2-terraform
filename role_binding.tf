@@ -64,13 +64,6 @@ resource "google_kms_crypto_key_version" "example-key" {
   crypto_key = google_kms_crypto_key.key-garage.id
 }
 /*
-resource "google_kms_key_ring_iam_binding" "key_ring" {
-  key_ring_id = "your-key-ring-id"
-  role        = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-  //adding members
-  members = var.iam_members
-}
-*/
 resource "google_kms_crypto_key_iam_binding" "crypto_key" {
   crypto_key_id = google_kms_crypto_key.key-garage.id
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
@@ -82,7 +75,7 @@ resource "google_project_iam_member" "keycrypto_role" {
   role    = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
   member  = "serviceAccount:my-service-account@${var.project}.iam.gserviceaccount.com"
 }
-
+*/
 resource "google_project_iam_member" "keycrypto_role_sa" {
   project = var.project
   role    = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
