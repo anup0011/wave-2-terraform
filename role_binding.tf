@@ -39,8 +39,13 @@ resource "google_project_service" "cloudkms_service" {
   project = var.project
   service = "cloudkms.googleapis.com"
 }
-
+/*
 resource "google_kms_key_ring" "keyring-garage" {
+  name     = "keyring-wave2-garge"
+  location = "global"
+}
+*/
+data "google_kms_key_ring" "keyring-garage" {
   name     = "keyring-wave2-garge"
   location = "global"
 }
@@ -54,6 +59,7 @@ resource "google_kms_crypto_key" "key-garage" {
     prevent_destroy = true
   }
 }
+
 resource "google_kms_crypto_key_version" "example-key" {
   crypto_key = google_kms_crypto_key.key-garage.id
 }
