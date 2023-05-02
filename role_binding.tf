@@ -4,7 +4,7 @@
 }
 */
 resource "google_compute_instance_iam_binding" "instance_binding" {
-  depends_on = [ google_compute_instance.wav2-linux ]
+  depends_on = [ google_compute_instance.wave2-linux ]
   project = var.project
   zone = "asia-south2-b"
   instance_name = google_compute_instance.wave2-linux.name
