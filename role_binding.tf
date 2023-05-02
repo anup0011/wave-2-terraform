@@ -7,13 +7,13 @@ resource "google_compute_instance_iam_binding" "instance_binding" {
   depends_on = [ google_compute_instance.wav2-linux ]
   project = var.project
   zone = "asia-south2-b"
-  instance_name = google_compute_instance.wav2-linux.name
+  instance_name = google_compute_instance.wave2-linux.name
   role = "roles/compute.instanceAdmin"
   members = var.iam_members
 }
 
 resource "google_compute_instance_iam_binding" "instance_binding_win" {
-  depends_on = [ google_compute_instance.wav2-windows ]
+  depends_on = [ google_compute_instance.wave2-windows ]
   project = var.project
   zone = "asia-south2-c"
   count = var.vm_count
