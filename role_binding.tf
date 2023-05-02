@@ -52,7 +52,7 @@ data "google_kms_key_ring" "keyring-garage" {
 
 resource "google_kms_crypto_key" "key-garage" {
   name            = "key-wave2-garage"
-  key_ring        = data.google_kms_key_ring.keyring-garage.name
+  key_ring        = data.google_kms_key_ring.keyring-garage.id
   rotation_period = "100000s"
 
   lifecycle {
@@ -71,3 +71,11 @@ resource "google_kms_key_ring_iam_binding" "key_ring" {
   members = var.iam_members
 }
 */
+resource "google_kms_crypto_key_iam_binding" "crypto_key" {
+  crypto_key_id = google_kms_crypto_key.key-garage.id
+  role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+
+  members = [
+    "serviceAccount:my-service-account${var.project}.iam.gserviceaccount.com"
+  ]
+}
