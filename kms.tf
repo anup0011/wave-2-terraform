@@ -16,6 +16,8 @@ resource "google_kms_crypto_key" "key-crypto" {
   }
   
 }
+data "google_storage_project_service_account" "gcs_account" {
+}
 resource "google_kms_crypto_key_iam_binding" "crypto_key" {
   crypto_key_id = google_kms_crypto_key.key-crypto.id
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
