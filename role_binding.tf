@@ -39,7 +39,7 @@ resource "google_project_service" "cloudkms_service" {
   project = var.project
   service = "cloudkms.googleapis.com"
 }
-/*
+
 resource "google_kms_key_ring" "keyring-garage" {
   name     = "keyring-wave2-garge"
   location = "global"
@@ -53,5 +53,12 @@ resource "google_kms_crypto_key" "key-garage" {
   lifecycle {
     prevent_destroy = true
   }
+}
+/*
+resource "google_kms_key_ring_iam_binding" "key_ring" {
+  key_ring_id = "your-key-ring-id"
+  role        = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+  //adding members
+  members = var.iam_members
 }
 */
