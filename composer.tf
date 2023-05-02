@@ -1,24 +1,22 @@
 resource "google_project_service" "composer_api" {
-  provider = google
-  project = "db-cicdpipeline-wave-2"
+  project = var.project
   service = "composer.googleapis.com"
   disable_on_destroy = false
 }
 resource "google_composer_environment" "composer_environment" {
-  provider = google
-  name = "composer-environment"
-  region = "asia-south1"
+  name = "composer-env"
+  region = var.composer_region
   config {
     software_config {
-      image_version = "composer-1.20.0-airflow-1.10.15"
+      image_version = "composer-2.1.14-airflow-2.5.1"
     }
-
+/*
     node_config {
      zone ="asia-south1-a"
      machine_type="n1-standard-1"
      network = "custom"
      subnetwork = "wave2-as1"
-     service_account = "new-service-account@db-cicdpipeline-wave-2.iam.gserviceaccount.com"
+     service_account = "my-service-account@${var.project}.gserviceaccount.com"
     }
     database_config {
       machine_type = "db-n1-standard-2"
@@ -26,10 +24,15 @@ resource "google_composer_environment" "composer_environment" {
     web_server_config {
       machine_type = "composer-n1-webserver-2"
     }
+    */
+    encryption_config {
+      kms_key_name = google_kms_crypto_key.key-garage.id
+    }
   }
 }
+
 resource "google_project_iam_member" "composer-worker" {
-project = "db-cicdpipeline-wave-2"
+project = var.project
 role = "roles/composer.worker"
-member = "serviceAccount:new-service-account@db-cicdpipeline-wave-2.iam.gserviceaccount.com"
+member = "serviceAccount:my-service-account@${var.project}.iam.gserviceaccount.com"
 }

@@ -52,3 +52,7 @@ variable "iam_members" {
     "user:suhasini.dussa@tcs.com"
    ]
 }
+variable "composer_region" {
+  type = string
+  default = "asia-south1"
+}
