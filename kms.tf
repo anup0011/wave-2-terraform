@@ -19,9 +19,5 @@ resource "google_kms_crypto_key" "key-crypto" {
 resource "google_kms_crypto_key_iam_binding" "crypto_key" {
   crypto_key_id = google_kms_crypto_key.key-crypto.id
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-  members       = [
-     "serviceAccount:service-${data.google_project.project.number}@compute-system.iam.gserviceaccount.com",
-
-  ]
-
+  members = ["serviceAccount:${data.google_kms_crypto_key_iam_binding.crypto_key.email_address}"]
 }
