@@ -74,8 +74,5 @@ resource "google_kms_key_ring_iam_binding" "key_ring" {
 resource "google_kms_crypto_key_iam_binding" "crypto_key" {
   crypto_key_id = google_kms_crypto_key.key-garage.id
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-
-  members = [
-    "serviceAccount:my-service-account@${var.project}.iam.gserviceaccount.com"
-  ]
+  members = var.iam_members
 }
