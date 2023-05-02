@@ -76,6 +76,6 @@ resource "google_kms_crypto_key_iam_binding" "crypto_key" {
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
 
   members = [
-    "serviceAccount:my-service-account${var.project}.iam.gserviceaccount.com"
+    "serviceAccount:my-service-account@${var.project}.iam.gserviceaccount.com"
   ]
 }
