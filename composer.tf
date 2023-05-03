@@ -3,14 +3,14 @@ resource "google_project_service" "composer_api" {
   service = "composer.googleapis.com"
   disable_on_destroy = false
 }
-resource "google_composer_environment" "composer_environment" {
+/*resource "google_composer_environment" "composer_environment" {
   name = "composer-env"
   region = var.composer_region
   config {
     software_config {
       image_version = "composer-2.1.14-airflow-2.5.1"
     }
-/*
+
     node_config {
      zone ="asia-south1-a"
      machine_type="n1-standard-1"
@@ -24,7 +24,7 @@ resource "google_composer_environment" "composer_environment" {
     web_server_config {
       machine_type = "composer-n1-webserver-2"
     }
-    */
+    
     encryption_config {
       kms_key_name = google_kms_crypto_key.key-garage.id
     }
@@ -36,3 +36,4 @@ project = var.project
 role = "roles/composer.worker"
 member = "serviceAccount:my-service-account@${var.project}.iam.gserviceaccount.com"
 }
+*/

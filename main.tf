@@ -45,7 +45,7 @@ resource "google_compute_instance" "wave2-linux" {
 
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = "my-service-account@${var.project}.iam.gserviceaccount.com"
+    email  = var.new_sa
     scopes = ["cloud-platform"]
   }
 }
@@ -79,7 +79,7 @@ resource "google_compute_instance" "wave2-windows" {
 
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = "my-service-account@${var.project}.iam.gserviceaccount.com"
+    email  = var.new_sa
     scopes = ["cloud-platform"]
   }
 }
