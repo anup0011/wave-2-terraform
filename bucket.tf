@@ -8,3 +8,10 @@ resource "google_storage_bucket" "storage-bucket"{
     enabled = true
   }
 }
+resource "google_storage_bucket_iam_binding" "binding" {
+  depends_on = [google_storage_bucket.storage-bucket]
+  project = var.project
+  bucket = google_storage_bucket.storage-bucket.name
+  role = "roles/storage.admin"
+  members = var.iam_members
+}
