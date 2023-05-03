@@ -76,9 +76,9 @@ resource "google_project_iam_member" "keycrypto_role" {
   member  = "serviceAccount:my-service-account@${var.project}.iam.gserviceaccount.com"
 }
 */
-resource "google_project_iam_member" "keycrypto_role_sa" {
+/*resource "google_project_iam_member" "keycrypto_role_sa" {
   project = var.project
   role    = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
   member  = "serviceAccount:service-817731629023@compute-system.iam.gserviceaccount.com"
-}
+}*/
 
