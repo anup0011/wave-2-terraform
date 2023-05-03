@@ -1,5 +1,8 @@
+resource "random_id" "bucket_prefix" {
+  byte_length = 8
+}
 resource "google_storage_bucket" "storage-bucket"{
-  name  = "ci-cd-bucket"
+  name  = "${random_id.bucket_prefix.hex}-storage-bucket"
   location = "ASIA"
   storage_class = "STANDARD"
   force_destroy = false
