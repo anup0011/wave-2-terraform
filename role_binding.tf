@@ -4,58 +4,26 @@
 }
 */
 resource "google_compute_instance_iam_binding" "instance_binding" {
-  depends_on = [ google_compute_instance.wav2-linux ]
+  depends_on = [ google_compute_instance.wave2-linux ]
   project = var.project
   zone = "asia-south2-b"
-  instance_name = google_compute_instance.wav2-linux.name
+  instance_name = google_compute_instance.wave2-linux.name
   role = "roles/compute.instanceAdmin"
-  members = [
-    "user:koshike.sushmitha@tcs.com",
-    "user:kushal.malla@tcs.com",
-    "user:neeraja.balireddy@tcs.com",
-    "user:ajaykumar.shah@tcs.com",
-    "user:apanya.chauhan1@tcs.com",
-    "user:keerthivashan.kc@tcs.com",
-    "user:manushri.m@tcs.com",
-    "user:meetu.singh@tcs.com",
-    "user:nisha.shashi@tcs.com",
-    "user:pavan.gowda@tcs.com",
-    "user:prabin.mohanty@tcs.com",
-    "user:sahithi.narla@tcs.com",
-    "user:sitaramachakravarthy.peruvel@tcs.com",
-    "user:srisahithi.banda@tcs.com",
-    "user:suhasini.dussa@tcs.com"
-  ]
+  members = var.iam_members
 }
 
 resource "google_compute_instance_iam_binding" "instance_binding_win" {
-  depends_on = [ google_compute_instance.wav2-windows ]
+  depends_on = [ google_compute_instance.wave2-windows ]
   project = var.project
   zone = "asia-south2-c"
-  for_each = toset(var.instance_names)
-  instance_name = each.value
+  count = var.vm_count
+  instance_name = "wave2-win${count.index}"
   role = "roles/compute.instanceAdmin"
-  members = [
-    "user:koshike.sushmitha@tcs.com",
-    "user:kushal.malla@tcs.com",
-    "user:neeraja.balireddy@tcs.com",
-    "user:ajaykumar.shah@tcs.com",
-    "user:apanya.chauhan1@tcs.com",
-    "user:keerthivashan.kc@tcs.com",
-    "user:manushri.m@tcs.com",
-    "user:meetu.singh@tcs.com",
-    "user:nisha.shashi@tcs.com",
-    "user:pavan.gowda@tcs.com",
-    "user:prabin.mohanty@tcs.com",
-    "user:sahithi.narla@tcs.com",
-    "user:sitaramachakravarthy.peruvel@tcs.com",
-    "user:srisahithi.banda@tcs.com",
-    "user:suhasini.dussa@tcs.com"
-  ]
+  members = var.iam_members
 }
 
 data "google_service_account" "new_service_account" {
-  account_id = "new-service-account"
+  account_id = "my-service-account"
 }
 
 resource "google_service_account_iam_binding" "sa_user_iam" {
@@ -63,23 +31,7 @@ resource "google_service_account_iam_binding" "sa_user_iam" {
   service_account_id = data.google_service_account.new_service_account.name
   role               = "roles/iam.serviceAccountUser"
 
-  members = [
-    "user:koshike.sushmitha@tcs.com",
-    "user:kushal.malla@tcs.com",
-    "user:neeraja.balireddy@tcs.com",
-    "user:ajaykumar.shah@tcs.com",
-    "user:apanya.chauhan1@tcs.com",
-    "user:keerthivashan.kc@tcs.com",
-    "user:manushri.m@tcs.com",
-    "user:meetu.singh@tcs.com",
-    "user:nisha.shashi@tcs.com",
-    "user:pavan.gowda@tcs.com",
-    "user:prabin.mohanty@tcs.com",
-    "user:sahithi.narla@tcs.com",
-    "user:sitaramachakravarthy.peruvel@tcs.com",
-    "user:srisahithi.banda@tcs.com",
-    "user:suhasini.dussa@tcs.com"
-  ]
+  members = var.iam_members
 }
 
 
@@ -92,14 +44,40 @@ resource "google_kms_key_ring" "keyring-garage" {
   name     = "keyring-wave2-garge"
   location = "global"
 }
+*/
+data "google_kms_key_ring" "keyring-garage" {
+  name     = "keyring-wave2-garge"
+  location = "global"
+}
 
 resource "google_kms_crypto_key" "key-garage" {
-  name            = "key-wave2-garage"
-  key_ring        = google_kms_key_ring.keyring-garage.id
-  rotation_period = "100000s"
+  name            = "key-test"
+  key_ring        = data.google_kms_key_ring.keyring-garage.id
+  rotation_period = "2592000s"
 
   lifecycle {
     prevent_destroy = true
   }
 }
+
+resource "google_kms_crypto_key_version" "example-key" {
+  crypto_key = google_kms_crypto_key.key-garage.id
+}
+/*
+resource "google_kms_crypto_key_iam_binding" "crypto_key" {
+  crypto_key_id = google_kms_crypto_key.key-garage.id
+  role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+  members = [ "serviceAccount:my-service-account@${var.project}.iam.gserviceaccount.com" ]
+}
+
+resource "google_project_iam_member" "keycrypto_role" {
+  project = var.project
+  role    = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+  member  = "serviceAccount:my-service-account@${var.project}.iam.gserviceaccount.com"
+}
 */
+resource "google_project_iam_member" "keycrypto_role_sa" {
+  project = var.project
+  role    = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+  member  = "serviceAccount:service-817731629023@compute-system.iam.gserviceaccount.com"
+}
