@@ -56,3 +56,7 @@ variable "composer_region" {
   type = string
   default = "asia-south1"
 }
+variable "bucket_name"{
+  type = string
+  default = "ci-cd-storage-bucket"
+}
