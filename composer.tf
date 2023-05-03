@@ -35,5 +35,5 @@ resource "google_composer_environment" "composer_environment" {
 resource "google_project_iam_member" "composer-worker" {
 project = var.project
 role = "roles/composer.worker"
-member = var.new_sa
+member = "serviceAccount:${var.new_sa}"
 }
