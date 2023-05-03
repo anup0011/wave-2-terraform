@@ -17,7 +17,7 @@ resource "google_composer_environment" "composer_environment" {
      machine_type="n1-standard-1"
      network = "custom"
      subnetwork = "wave2-as1"
-     service_account = var.new_sa
+     service_account = "serviceAccount:${var.new_sa}"
     }
     /*database_config {
       machine_type = "db-n1-standard-2"

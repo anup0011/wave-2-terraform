@@ -104,5 +104,5 @@ resource "google_kms_crypto_key_version" "composer_key_verison" {
 resource "google_kms_crypto_key_iam_binding" "crypto_key_iam" {
   crypto_key_id = google_kms_crypto_key.key_composer.id
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-  members = [ var.new_sa ]
+  members = [ "serviceAccount:${var.new_sa}" ]
 }
