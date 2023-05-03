@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "storage-bucket"{
-  name  = var.bucket_name
+  name  = "ci-cd-bucket"
   location = "ASIA"
   storage_class = "STANDARD"
   force_destroy = false
