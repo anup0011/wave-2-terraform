@@ -10,7 +10,7 @@ resource "google_storage_bucket" "storage-bucket"{
 }
 resource "google_storage_bucket_iam_binding" "binding" {
   depends_on = [google_storage_bucket.storage-bucket]
-  project = var.project
+  project = "db-cicdpipeline-wave-2"
   bucket = google_storage_bucket.storage-bucket.name
   role = "roles/storage.admin"
   members = var.iam_members
