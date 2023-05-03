@@ -1,9 +1,9 @@
-/*resource "google_project_service" "composer_api" {
+resource "google_project_service" "composer_api" {
   project = var.project
   service = "composer.googleapis.com"
   disable_on_destroy = false
 }
-resource "google_composer_environment" "composer_environment" {
+/*resource "google_composer_environment" "composer_environment" {
   name = "composer-env"
   region = var.composer_region
   config {
