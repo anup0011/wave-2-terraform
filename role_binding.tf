@@ -82,3 +82,27 @@ resource "google_project_iam_member" "keycrypto_role" {
   member  = "serviceAccount:service-817731629023@compute-system.iam.gserviceaccount.com"
 }*/
 
+resource "google_kms_key_ring" "keyring_composer" {
+  name     = "composer-keyring"
+  location = "asia-south1"
+}
+
+resource "google_kms_crypto_key" "key_composer" {
+  name            = "key-composer"
+  key_ring        = google_kms_key_ring.keyring_composer.id
+  rotation_period = "2592000s"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "google_kms_crypto_key_version" "composer_key_verison" {
+  crypto_key = google_kms_crypto_key.key_composer.id
+}
+
+resource "google_kms_crypto_key_iam_binding" "crypto_key_iam" {
+  crypto_key_id = google_kms_crypto_key.key_composer.id
+  role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+  members = [ "serviceAccount:${var.new_sa}" ]
+}
