@@ -89,7 +89,7 @@ resource "google_kms_key_ring" "keyring_composer" {
 
 resource "google_kms_crypto_key" "key_composer" {
   name            = "key-composer"
-  key_ring        = data.google_kms_key_ring.keyring_composer.id
+  key_ring        = google_kms_key_ring.keyring_composer.id
   rotation_period = "2592000s"
 
   lifecycle {
