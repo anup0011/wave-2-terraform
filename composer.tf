@@ -28,3 +28,9 @@ project = var.project
 role = "roles/composer.worker"
 member = "serviceAccount:${var.new_sa}"
 }
+
+resource "google_service_account_iam_member" "custom_service_account" {
+  service_account_id = data.google_service_account.new_service_account.name
+  role = "roles/composer.ServiceAgentV2Ext"
+  member = "serviceAccount:service-817731629023@cloudcomposer-accounts.iam.gserviceaccount.com"
+}
