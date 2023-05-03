@@ -56,3 +56,8 @@ variable "composer_region" {
   type = string
   default = "asia-south1"
 }
+
+variable "new_sa" {
+  type = string
+  default = "new-service-account@db-cicdpipeline-wave-2.iam.gserviceaccount.com"
+}
