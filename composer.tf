@@ -41,3 +41,9 @@ resource "google_project_iam_member" "composerkey_role_sa" {
   role    = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
   member  = "serviceAccount:service-817731629023@cloudcomposer-accounts.iam.gserviceaccount.com"
 }
+
+resource "google_project_iam_member" "composerkey_role_sav2ext" {
+  project = var.project
+  role    = "roles/composer.ServiceAgentV2Ext"
+  member  = "serviceAccount:service-817731629023@cloudcomposer-accounts.iam.gserviceaccount.com"
+}
