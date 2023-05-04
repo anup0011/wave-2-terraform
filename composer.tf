@@ -7,7 +7,7 @@ resource "google_project_service" "composer_api" {
 resource "google_composer_environment" "composer_environment" {
   name = "composer-env"
   region = var.composer_region
-  depends_on = [ google_project_iam_member.composerkey_role_sa ]
+  depends_on = [ google_project_iam_binding.composerkey_role_sa ]
   config {
     software_config {
       image_version = "composer-2.1.14-airflow-2.5.1"
