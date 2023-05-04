@@ -40,7 +40,11 @@ resource "google_project_iam_binding" "composerkey_role_sa" {
   project = var.project
   role    = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
   members  = ["serviceAccount:service-817731629023@cloudcomposer-accounts.iam.gserviceaccount.com",
-              "serviceAccount:service-817731629023@container-engine-robot.iam.gserviceaccount.com"
+              "serviceAccount:service-817731629023@container-engine-robot.iam.gserviceaccount.com",
+              "serviceAccount:service-817731629023@compute-system.iam.gserviceaccount.com",
+              "serviceAccount:service-817731629023@gcp-sa-artifactregistry.iam.gserviceaccount.com",
+              "serviceAccount:service-817731629023@gcp-sa-pubsub.iam.gserviceaccount.com",
+              "serviceAccount:service-817731629023@gs-project-accounts.iam.gserviceaccount.com"
   ]
 }
 
@@ -49,3 +53,16 @@ resource "google_project_iam_member" "composerkey_role_sav2ext" {
   role    = "roles/composer.ServiceAgentV2Ext"
   member  = "serviceAccount:service-817731629023@cloudcomposer-accounts.iam.gserviceaccount.com"
 }
+
+resource "google_project_iam_binding" "composer_users_iam" {
+  project = var.project
+  role = "roles/composer.environmentAndStorageObjectAdmin"
+  members = var.iam_members
+}
+
+resource "google_service_account_iam_binding" "composer_actas_iam" {
+  service_account_id = data.google_service_account.new_service_account.name
+  role = "roles/iam.serviceAccounts.actAs"
+  members = var.iam_members
+}
+
