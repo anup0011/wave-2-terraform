@@ -14,7 +14,7 @@ resource "google_compute_firewall" "ssh_rule" {
 
 }
 
-/*resource "google_compute_instance" "wave2-linux" {
+resource "google_compute_instance" "wave2-linux" {
   name         = "wave2-linux1"
   machine_type = var.machine_type
   zone         = "asia-south2-b"
@@ -83,4 +83,4 @@ resource "google_compute_instance" "wave2-windows" {
     scopes = ["cloud-platform"]
   }
 }
-*/
+
