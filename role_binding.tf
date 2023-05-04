@@ -3,7 +3,7 @@
   display_name = "test-sa"
 }
 */
-resource "google_compute_instance_iam_binding" "instance_binding" {
+/*resource "google_compute_instance_iam_binding" "instance_binding" {
   depends_on = [ google_compute_instance.wave2-linux ]
   project = var.project
   zone = "asia-south2-b"
@@ -21,7 +21,7 @@ resource "google_compute_instance_iam_binding" "instance_binding_win" {
   role = "roles/compute.instanceAdmin"
   members = var.iam_members
 }
-
+*/
 data "google_service_account" "new_service_account" {
   account_id = "new-service-account"
 }
