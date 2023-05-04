@@ -10,9 +10,8 @@ resource "google_storage_bucket" "storage-bucket"{
   versioning{
     enabled = true
   }
-  /*encryption {
-    default_kms_key_name = google_kms_crypto_key.key-garage.id
-  }*/
+  encryption {
+    default_kms_key_name =google_kms_crypto_key.key_composer.id
 }
 resource "google_storage_bucket_iam_binding" "binding" {
   depends_on = [google_storage_bucket.storage-bucket]
