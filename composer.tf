@@ -4,7 +4,7 @@ resource "google_project_service" "composer_api" {
   disable_on_destroy = false
 }
 
-/*resource "google_composer_environment" "composer_environment" {
+resource "google_composer_environment" "composer_environment" {
   name = "composer-env"
   region = var.composer_region
   config {
@@ -34,4 +34,3 @@ resource "google_service_account_iam_member" "custom_service_account" {
   role = "roles/composer.ServiceAgentV2Ext"
   member = "serviceAccount:service-817731629023@cloudcomposer-accounts.iam.gserviceaccount.com"
 }
-*/
