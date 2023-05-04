@@ -60,9 +60,4 @@ resource "google_project_iam_binding" "composer_users_iam" {
   members = var.iam_members
 }
 
-resource "google_service_account_iam_binding" "composer_actas_iam" {
-  service_account_id = data.google_service_account.new_service_account.name
-  role = "roles/iam.serviceAccounts.actAs"
-  members = var.iam_members
-}
 
