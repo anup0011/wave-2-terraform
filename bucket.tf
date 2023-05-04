@@ -3,7 +3,7 @@ resource "random_id" "bucket_prefix-1" {
 }
 resource "google_storage_bucket" "storage-bucket"{
   name  = "${random_id.bucket_prefix-1.hex}-storage-bucket"
-  location = "ASIA"
+  location = "asia-south1"
   storage_class = "STANDARD"
   force_destroy = false
   uniform_bucket_level_access = true
@@ -17,6 +17,6 @@ resource "google_storage_bucket" "storage-bucket"{
 resource "google_storage_bucket_iam_binding" "binding" {
   depends_on = [google_storage_bucket.storage-bucket]
   bucket = google_storage_bucket.storage-bucket.name
-  role = "roles/storage.admin"
+  role = "roles/storage.object.admin"
   members = var.iam_members
 }
