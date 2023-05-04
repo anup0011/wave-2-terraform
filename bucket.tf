@@ -10,7 +10,7 @@ resource "google_storage_bucket" "storage-bucket"{
   versioning{
     enabled = true
   }
-  depends_on = [ google_project_iam_binding.composerkey_role_sa ]
+  
   encryption {
     default_kms_key_name =google_kms_crypto_key.key_composer.id
   }
