@@ -7,7 +7,7 @@ resource "google_project_service" "composer_api" {
 resource "google_composer_environment" "composer_environment" {
   name = "composer-env"
   region = var.composer_region
-  depends_on = [ google_project_iam_member.composerkey_role_sa ]
+  depends_on = [ google_project_iam_binding.composerkey_role_sa ]
   config {
     software_config {
       image_version = "composer-2.1.14-airflow-2.5.1"
@@ -36,10 +36,12 @@ resource "google_service_account_iam_member" "custom_service_account" {
   member = "serviceAccount:service-817731629023@cloudcomposer-accounts.iam.gserviceaccount.com"
 }
 
-resource "google_project_iam_member" "composerkey_role_sa" {
+resource "google_project_iam_binding" "composerkey_role_sa" {
   project = var.project
   role    = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-  member  = "serviceAccount:service-817731629023@cloudcomposer-accounts.iam.gserviceaccount.com"
+  members  = ["serviceAccount:service-817731629023@cloudcomposer-accounts.iam.gserviceaccount.com",
+              "serviceAccount:service-817731629023@container-engine-robot.iam.gserviceaccount.com"
+  ]
 }
 
 resource "google_project_iam_member" "composerkey_role_sav2ext" {
