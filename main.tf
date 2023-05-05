@@ -1,3 +1,4 @@
+// Creating ssh firewall rule for linux instance.
 resource "google_compute_firewall" "ssh_rule" {
   project     = var.project
   name        = "allow-ssh-rule"
@@ -11,9 +12,10 @@ resource "google_compute_firewall" "ssh_rule" {
     protocol  = "tcp"
     ports     = ["22"]
   }
-
 }
 
+// Creating linux instance.
+// Using aisa-south2 region for subnet.
 resource "google_compute_instance" "wave2-linux" {
   name         = "wave2-linux1"
   machine_type = var.machine_type
@@ -23,7 +25,7 @@ resource "google_compute_instance" "wave2-linux" {
   depends_on = [google_project_iam_member.keycrypto_role_sa ]
 
   boot_disk {
-    kms_key_self_link = google_kms_crypto_key.key-garage.id
+    kms_key_self_link = google_kms_crypto_key.key-garage.id # Using kms key for disk encryption and decryption.
     initialize_params {
       image = var.image_linux
       labels = {
@@ -31,11 +33,11 @@ resource "google_compute_instance" "wave2-linux" {
       }
     }
   }
+
   network_interface {
     network = "custom"
     subnetwork = var.test_subnet
-    access_config {
-      
+    access_config {  
     }
   }
 
@@ -50,6 +52,8 @@ resource "google_compute_instance" "wave2-linux" {
   }
 }
 
+# Creating two windows instances.
+// Using aisa-south2 region for subnet.
 resource "google_compute_instance" "wave2-windows" {
   count        = var.vm_count
   name         = "wave2-win${count.index}"
@@ -60,7 +64,7 @@ resource "google_compute_instance" "wave2-windows" {
   depends_on = [google_project_iam_member.keycrypto_role_sa ]
 
   boot_disk {
-    kms_key_self_link = google_kms_crypto_key.key-garage.id
+    kms_key_self_link = google_kms_crypto_key.key-garage.id # Using kms key for disk encryption and decryption.
     initialize_params {
       image = var.image_windows
       labels = {
@@ -72,8 +76,7 @@ resource "google_compute_instance" "wave2-windows" {
   network_interface {
     network = "custom"
     subnetwork = var.test_subnet
-    access_config {
-      
+    access_config {      
     }
   }
 
