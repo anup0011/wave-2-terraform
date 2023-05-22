@@ -96,9 +96,7 @@ resource "google_artifact_registry_repository" "wave2app_repo" {
   format = "MAVEN"
   kms_key_name = google_kms_crypto_key.key_composer.id
   maven_config {
-    allow_stopping_for_update {
-      
-    }
+    allow_snapshot_overwrites = true
     version_policy = "VERSION_POLICY_UNSPECIFIED"
   }
   
