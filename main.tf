@@ -107,7 +107,8 @@ resource "google_project_iam_binding" "artifact_iam" {
   project = var.project
   role = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
   members = ["serviceAccount:service-817731629023@gcp-sa-artifactregistry.iam.gserviceaccount.com",
-             "serviceAccount:wave-2-app@db-cicdpipeline-wave-2.iam.gserviceaccount.com"]
+             "serviceAccount:wave-2-app@db-cicdpipeline-wave-2.iam.gserviceaccount.com",
+             "serviceAccount:my-service-account@db-cicdpipeline-wave-2.iam.gserviceaccount.com"]
   
 }
 
