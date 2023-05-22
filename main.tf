@@ -89,7 +89,7 @@ resource "google_compute_instance" "wave2-windows" {
 
 # Creating repository in Artifact Registry
 resource "google_artifact_registry_repository" "wave2app_repo" {
-  depends_on = [ google_project_iam_binding.artifact_iam ]
+  depends_on = [ google_project_iam_binding.artifact_iam ,google_project_iam_binding.artifact_iam_sa]
   location = "asia-south1"
   repository_id = "wave2app"
   description = "Maven repository"
@@ -116,7 +116,8 @@ resource "google_project_iam_binding" "artifact_iam" {
 resource "google_project_iam_binding" "artifact_iam_sa" {
   project = var.project
   role = "roles/artifactregistry.admin"
-  members = ["serviceAccount:wave-2-app@db-cicdpipeline-wave-2.iam.gserviceaccount.com"]
+  members = ["serviceAccount:wave-2-app@db-cicdpipeline-wave-2.iam.gserviceaccount.com",
+             "serviceAccount:my-service-account@db-cicdpipeline-wave-2.iam.gserviceaccount.com"]
 }
 
 # Binding roles to users on repository
