@@ -106,8 +106,8 @@ resource "google_artifact_registry_repository" "wave2app_repo" {
 resource "google_project_iam_binding" "artifact_iam" {
   project = var.project
   role = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-  members = ["service-817731629023@gcp-sa-artifactregistry.iam.gserviceaccount.com",
-             "wave-2-app@db-cicdpipeline-wave-2.iam.gserviceaccount.com"]
+  members = ["serviceAccount:service-817731629023@gcp-sa-artifactregistry.iam.gserviceaccount.com",
+             "serviceAccount:wave-2-app@db-cicdpipeline-wave-2.iam.gserviceaccount.com"]
   
 }
 
@@ -115,7 +115,7 @@ resource "google_project_iam_binding" "artifact_iam" {
 resource "google_project_iam_binding" "artifact_iam_sa" {
   project = var.project
   role = "roles/artifactregistry.admin"
-  members = ["wave-2-app@db-cicdpipeline-wave-2.iam.gserviceaccount.com"]
+  members = ["serviceAccount:wave-2-app@db-cicdpipeline-wave-2.iam.gserviceaccount.com"]
 }
 
 # Binding roles to users on repository
