@@ -1,4 +1,4 @@
-name: WIF
+name: Test_teraform_workflow
 env:
   project_id: db-cicdpipeline-wave-2
 on:
