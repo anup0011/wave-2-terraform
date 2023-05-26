@@ -128,3 +128,12 @@ resource "google_artifact_registry_repository_iam_binding" "artifact_iam_users"{
   role = "roles/artifactregistry.repoAdmin"
   members = var.iam_members
 }
+
+# Public Access to Artifact
+resource "google_artifact_registry_repository_iam_binding" "artifact_iam_users"{
+  project = var.project
+  location = var.composer_region
+  repository = google_artifact_registry_repository.wave2app_repo.name
+  role = "roles/artifactregistry.reader"
+  member = "allUsers" 
+}
