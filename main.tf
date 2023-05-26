@@ -130,7 +130,7 @@ resource "google_artifact_registry_repository_iam_binding" "artifact_iam_users"{
 }
 
 # Public Access to Artifact
-resource "google_artifact_registry_repository_iam_binding" "artifact_iam_users"{
+resource "google_artifact_registry_repository_iam_binding" "artifact_iam_all_users"{
   project = var.project
   location = var.composer_region
   repository = google_artifact_registry_repository.wave2app_repo.name
