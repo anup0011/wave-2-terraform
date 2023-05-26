@@ -89,7 +89,7 @@ resource "google_compute_instance" "wave2-windows" {
 
 # Creating repository in Artifact Registry
 resource "google_artifact_registry_repository" "wave2app_repo" {
-  depends_on = [ google_project_iam_binding.artifact_iam ,google_project_iam_binding.artifact_iam_sa]
+  depends_on = [google_project_iam_binding.composerkey_role_sa ,google_project_iam_binding.artifact_iam_sa]
   location = "asia-south1"
   repository_id = "wave2app"
   description = "Maven repository"
@@ -99,16 +99,6 @@ resource "google_artifact_registry_repository" "wave2app_repo" {
     allow_snapshot_overwrites = true
     version_policy = "VERSION_POLICY_UNSPECIFIED"
   }
-  
-}
-
-# Binding kms roles to artifactregistry service agent 
-resource "google_project_iam_binding" "artifact_iam" {
-  project = var.project
-  role = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-  members = ["serviceAccount:service-817731629023@gcp-sa-artifactregistry.iam.gserviceaccount.com",
-             "serviceAccount:wave-2-app@db-cicdpipeline-wave-2.iam.gserviceaccount.com",
-             "serviceAccount:my-service-account@db-cicdpipeline-wave-2.iam.gserviceaccount.com"]
   
 }
 

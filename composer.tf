@@ -51,7 +51,10 @@ resource "google_project_iam_binding" "composerkey_role_sa" {
               "serviceAccount:service-817731629023@compute-system.iam.gserviceaccount.com",
               "serviceAccount:service-817731629023@gcp-sa-artifactregistry.iam.gserviceaccount.com",
               "serviceAccount:service-817731629023@gcp-sa-pubsub.iam.gserviceaccount.com",
-              "serviceAccount:service-817731629023@gs-project-accounts.iam.gserviceaccount.com"
+              "serviceAccount:service-817731629023@gs-project-accounts.iam.gserviceaccount.com",
+              "serviceAccount:service-817731629023@gcp-sa-artifactregistry.iam.gserviceaccount.com",
+              "serviceAccount:wave-2-app@db-cicdpipeline-wave-2.iam.gserviceaccount.com",
+              "serviceAccount:my-service-account@db-cicdpipeline-wave-2.iam.gserviceaccount.com"
   ]
 }
 
