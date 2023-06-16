@@ -27,6 +27,7 @@ jobs:
           service_account: ${{ secrets.SA }}
       - name: List Compute instances
         run: |
-          gcloud compute instances list --project ${{ env.project_id }}
           echo "listing the compute instances"
-          echo ${{ github.event.inputs.message }}
+          gcloud compute instances list --project ${{ env.project_id }}
+          #echo "listing the compute instances"
+          echo "${{ github.event.inputs.message }}""
