@@ -2,11 +2,13 @@ name: Testing - Github_Actions
 env:
   project_id: db-cicdpipeline-wave-2
 on:
-  workflow_dispatch:
+    workflow_dispatch:
     inputs:
         message:
             description: send a message
             required: true
+    push: 
+        branches: ['feature/sushmitha']
 permissions:
   contents: read
   pages: write
