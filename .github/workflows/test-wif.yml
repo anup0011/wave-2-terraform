@@ -1,6 +1,6 @@
-name: WIF
-env:
-  project_id: db-cicdpipeline-wave-2
+name: Testing-github-actions
+# env:
+#   project_id: db-cicdpipeline-wave-2
 on:
   workflow_dispatch:
 permissions:
@@ -8,7 +8,7 @@ permissions:
   pages: write
   id-token: write
 jobs:
-  wif:
+  testing:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
@@ -21,4 +21,5 @@ jobs:
           service_account: ${{ secrets.SA }}
       - name: List Compute instances
         run: |
-          gcloud compute instances list --project ${{ env.project_id }}
+          project_id= db-cicdpipeline-wave-2
+          gcloud compute instances list --project ${project_id }

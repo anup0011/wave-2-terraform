@@ -1,0 +1,27 @@
+name: test inputs actions
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        required: true
+        description : Enter a message
+jobs:
+    testing:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v3
+            - name: Auth Google cloud
+              uses: google-github-actions/auth@v1
+              with:
+                token_format: 'access_token'
+                workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
+                service_account: ${{ secrets.SA }}
+            - name: List Compute instances
+              run: |
+                project_id= db-cicdpipeline-wave-2
+                gcloud compute instances list --project ${{ github.event.inputs.message }}
+      
+      
+      
+    
