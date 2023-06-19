@@ -2,6 +2,9 @@ name: Testing-github-actions
 # env:
 #   project_id: db-cicdpipeline-wave-2
 on:
+  push:
+    branches:
+        - feature/testing1
   workflow_dispatch:
     inputs:
         message:
