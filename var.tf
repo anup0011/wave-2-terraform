@@ -1,9 +1,3 @@
-variable "apis" {
-
-type = list
-default = [ "iam.googleapis.com","cloudfunctions.googleapis.com" ]
-
-}
 
 variable "project_id" {
 
