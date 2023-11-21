@@ -18,6 +18,6 @@ resource "google_project_service" "project-cf" {
 
 resource "google_project_service" "project-schedular" {
   project = var.project_id
-  service =  "schedular.googleapis.com"
+  service =  "cloudscheduler.googleapis.com"
 
 }
