@@ -3,13 +3,10 @@ resource "google_compute_firewall" "default" {
   network = google_compute_network.custom_vpc.name
   direction = "INGRESS"
   allow {
-    protocol = "ssh"
-  }
-
-  allow {
     protocol = "tcp"
     ports    = ["22"]
   }
 
   source_ranges = ["0.0.0.0/0"]
+  target_tags = ["vm1"]
 }
