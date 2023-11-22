@@ -1,7 +1,7 @@
 
 resource "google_compute_instance" "vm1" {
   name         = "vm1"
-  machine_type = "n2-standard-2"
+  machine_type = "n1-standard-1"
   zone         = "us-central1-a"
 
   tags = ["vm1"]
@@ -21,9 +21,6 @@ resource "google_compute_instance" "vm1" {
     network = google_compute_network.custom_vpc.id
 	subnetwork = google_compute_subnetwork.custom_subnetwork.id
 
-    access_config {
-      // Ephemeral public IP
-    }
   }
 
   metadata = {
