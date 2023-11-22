@@ -1,4 +1,8 @@
-resource "google_service_account_iam_binding" "compute-iam" {
-  service_account_id = google_service_account.service_account_compute.name
-  role               = "roles/compute.instanceAdmin.v1"
+resource "google_project_iam_binding" "project-compute" {
+  project = var.project_id
+  role    = "roles/compute.instanceAdmin.v1"
+
+  members = [
+    "serviceAccount:${google_service_account.service_account_compute.email}",
+  ]
 }
