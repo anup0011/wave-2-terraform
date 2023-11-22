@@ -6,3 +6,12 @@ resource "google_project_iam_binding" "project-compute" {
     "serviceAccount:${google_service_account.service_account_compute.email}",
   ]
 }
+
+resource "google_project_iam_binding" "project-cf" {
+  project = var.project_id
+  role    = "roles/cloudfunction.invoker"
+
+  members = [
+    "serviceAccount:${google_service_account.service_account_cf.email}",
+  ]
+}
