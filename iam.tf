@@ -9,7 +9,7 @@ resource "google_project_iam_binding" "project-compute" {
 
 resource "google_project_iam_binding" "project-cf" {
   project = var.project_id
-  role    = "roles/cloudfunction.invoker"
+  role    = "roles/run.invoker"
 
   members = [
     "serviceAccount:${google_service_account.service_account_cf.email}",
