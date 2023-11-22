@@ -19,7 +19,7 @@ resource "google_cloudfunctions2_function" "function" {
   description = "cloud function to start stop vm "
 
   build_config {
-    runtime = "python83"
+    runtime = "python39"
     entry_point = "startstop"  # Set the entry point 
     environment_variables = {
         BUILD_CONFIG_TEST = "build_test"
