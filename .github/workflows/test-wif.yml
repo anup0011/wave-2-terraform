@@ -21,5 +21,4 @@ jobs:
           service_account: ${{ secrets.SA }}
       - name: List Compute instances
         run: |
-             gsutil ls
           gcloud compute instances list --project ${{ env.project_id }}
