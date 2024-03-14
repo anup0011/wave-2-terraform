@@ -1,6 +1,6 @@
 name: WIF
 env:
-  project_id: db-cicdpipeline-wave-2
+  project_id: db-cloud-poc
 on:
   workflow_dispatch:
 permissions:
@@ -21,4 +21,5 @@ jobs:
           service_account: ${{ secrets.SA }}
       - name: List Compute instances
         run: |
+             gsutil ls
           gcloud compute instances list --project ${{ env.project_id }}
