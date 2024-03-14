@@ -25,10 +25,11 @@ jobs:
       - name: Run terraform init
         run: |
           terraform init
-      - name: Run terraform plan
-        run: |
-          terraform plan 
-      - name: Run terraform apply
-        if: github.ref == 'refs/heads/main'
-        run: |
-          terraform apply -auto-approve
+          gsutil ls gs://terraform-state-db-poc-wave-4
+#      - name: Run terraform plan
+#        run: |
+#          terraform plan 
+#      - name: Run terraform apply
+#        if: github.ref == 'refs/heads/main'
+#        run: |
+#          terraform apply -auto-approve
