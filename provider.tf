@@ -6,7 +6,7 @@ terraform {
     }
   }
  backend "gcs" {
-   bucket  = "1010101-terraform-tfstate"
+   bucket  = "terraform-state-db-poc-wave-4"
    prefix  = "terraform/state"
  }
 }
