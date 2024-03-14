@@ -1,11 +1,10 @@
 name: Terraform
 env:
-  project_id: db-cicdpipeline-wave-2
+  project_id: db-cloud-poc
 on:
   push:
     branches:
       - main
-      - feature/*
   workflow_dispatch:
 permissions:
   contents: read
