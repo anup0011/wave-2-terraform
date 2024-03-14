@@ -25,7 +25,7 @@ jobs:
       - name: Run terraform init
         run: |
           terraform init
-          gsutil ls gs://terraform-state-db-poc-wave-4
+#          gsutil ls gs://terraform-state-db-poc-wave-4
 #      - name: Run terraform plan
 #        run: |
 #          terraform plan 
